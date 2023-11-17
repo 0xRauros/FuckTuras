@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<section class="layout">
+{% include 'account/_sidebar.html' %}
+<div class="body animate__animated animate__slideInUp animate__delay-0.5s">
+  <div class="container">
+
+    <h1 class="text-white">Last invoices</h1>
+    <hr>
+
+    <div class="row">
+      {% for invoice in invoices %}
+      <div class="col">
+        <div class="card border border-primary" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{ invoice.title }}</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary">{{ invoice.customer }}</h6>
+              <p class="card-text">{{ invoice.concept }}</p>
+              <a href="{% url 'invoices:invoice_detail' invoice.id %}" class="card-link">See</a>
+              <a href="{% url 'invoices:invoice_export' invoice.id %}" class="card-link">Export PDF</a>
+            </div>
+          </div>
+    </div>
+      {% endfor %}
+    </div>
+    <br>
+    <div class="row">
+      <div class="col">
+        <a href="{% url 'invoices:invoice_form' %}">
+          <h1 class="text-white"><i class="bi bi-plus-square add"></i></h1>
+        </a>
+      </div>
+    </div>
+  
+   
+    
+  </div>
+</div>
+</section>
+{% endblock %}

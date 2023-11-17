@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Customer {{customer.name}}{% endblock %}
+
+{% block styles %}
+<link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+<section class="layout">
+    {% include 'account/_sidebar.html' %}
+    <div class="body animate__animated animate__slideInUp animate__delay-0.5s">
+        <div class="container text-white">
+            <div class="px-4 py-5 my-5 text-center">
+                <h1><i class="bi bi-building-exclamation"></i></h1>
+                <h1 class="display-5 fw-bold">{{ customer.name }}</h1>
+                <div class="col-lg-6 mx-auto">
+                  <p class="lead mb-4">{{ customer.description }}</p>
+                  <hr>
+                  <div class="row">
+                    <div class="col">
+                        <p><strong><i class="bi bi-geo-alt"></i>&nbsp;&nbsp;City: </strong>{{ customer.city }}</p>
+                    </div>
+                    <div class="col">
+                        <p><strong><i class="bi bi-signpost-fill"></i>&nbsp;&nbsp;Address: </strong>{{ customer.address }}</p>
+                    </div>
+                    <div class="col">
+                        <p><strong>&nbsp;&nbsp;Postal Code: </strong>{{ customer.postal_code }}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col">
+                        <p><strong>Legal number: </strong>{{ customer.legal_number }}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col">
+                        <p><strong><i class="bi bi-telephone-fill"></i>&nbsp;&nbsp;Tlf: </strong>{{ customer.phone }}</p>
+                    </div>
+                    <div class="col">
+                        <p><strong><i class="bi bi-link"></i></i>&nbsp;&nbsp;Web Site: </strong>{{ customer.website }}</p>
+                    </div>
+                    <div class="col">
+                        <p><strong><i class="bi bi-envelope"></i></i>&nbsp;&nbsp;Email: </strong>{{ customer.email }}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <a href="#" target="_blank" class="btn btn-primary btn-lg px-4 gap-3">Edit</a>
+                    <a href="#" class="btn btn-danger btn-lg px-4">Delete</a>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </div>
+    
+    </section>
+    
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

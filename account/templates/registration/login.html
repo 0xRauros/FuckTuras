@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}Log in{% endblock %}
+
+{% block content %}
+    
+        <div class="container col-xl-10 col-xxl-8 px-4 py-5 in:wipe:top-right animate__animated animate__zoomInDown">
+            <div class="row align-items-center g-lg-5 py-5">
+              <div class="col-lg-7 text-center text-lg-start">
+                <h1 class="display-4 fw-bold lh-1  mb-3 text-white"><strong class="text-primary">FUCK</strong>Turas</h1>
+                <p class="col-lg-10 fs-4 text-white">
+                    FuckTuras is an open source solution for invoice management. 
+                    Built with <strong class="text-primary">Django</strong> and love for all those folks that don't want to depend on any external service. 
+                    Quick set up and deploy on your own. 
+                </p>
+              </div>
+              <div class="col-md-10 mx-auto col-lg-5">
+                <form autocomplete="off" class="p-4 p-md-5 border rounded-3 bg-body-tertiary" action="{% url 'account:login' %}" method="POST">
+                  {% csrf_token %}
+                  {% for field in form %}
+                  <div class="form-floating mb-3">
+                    {{ field|as_crispy_field }}
+                    <!-- <input type="text" class="form-control" id="floatingInput" placeholder="{{ field.label_tag }}"> -->
+                  </div>
+                  {% endfor %}
+                  <input class="w-100 btn btn-lg btn-primary" type="submit" value="Log In" />
+                  <hr class="my-4">
+                  <small class="text-body-secondary">Baby come back!</small>
+                </form>
+              </div>
+            </div>
+          </div>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Update Profile{% endblock %}
+
+{% block content %}
+<section class="layout">
+{% include 'account/_sidebar.html' %}
+<div class="body animate__animated animate__slideInUp animate__delay-0.5s">
+  <div class="container">
+
+    <h1 class="text-white">Update Profile</h1>
+    <p class="lead">Change the data you would like to update with the form below.</p>
+    <hr class="my-4">
+    <div style="max-width: 50%;">
+      <form method="post" class="text-white" enctype='multipart/form-data'>
+        {% csrf_token %}
+        <div class="row py-2">
+          <div class="col">
+            {{ form.photo|as_crispy_field }}
+          </div>
+          <div class="col">
+            {{ form.address|as_crispy_field }}
+          </div>
+        </div>
+        <div class="row py-2">
+          <div class="col">
+            {{ form.city|as_crispy_field }}
+          </div>
+          <div class="col">
+            {{ form.phone|as_crispy_field }}
+          </div>
+        </div>
+        <div class="row py-2">
+          <div class="col">
+            {{ form.description|as_crispy_field }}
+          </div>
+        </div>
+        <div class="row py-2">
+          <div class="col">
+            {{ form.email|as_crispy_field }}
+          </div>
+          <div class="col">
+            {{ form.website|as_crispy_field }}
+          </div>
+        </div>
+        <br>
+        <input type="submit" value="Update" class="btn btn-primary">
+     </form>
+    </div>
+    
+  </div>
+</div>
+</section>
+{% endblock %}

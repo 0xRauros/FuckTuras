@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Invoice list{% endblock %}
+
+{% block styles %}
+<link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+<section class="layout">
+    {% include 'account/_sidebar.html' %}
+    <div class="body animate__animated animate__slideInUp animate__delay-0.5s" style="width: 100%;">
+      <h1 class="text-white"><i class="bi bi-receipt"></i>&nbsp;&nbsp; <strong>My invoices</strong></h1>
+      <hr>
+    
+      <div id="table" style="width: 100%;"></div>
+      <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+      <script>
+
+        new gridjs.Grid({
+          columns: [
+            { id: 'title', name: 'Title' },
+            { id: 'customer', name: 'Customer' },
+            { id: 'concept', name: 'Concept', sort: false },
+            {id: 'issue_date', name: 'Issue Date' },
+            { id: 'irpf', name: 'IRPF' },
+          ],
+          data: [
+            {% for invoice in invoices %}
+              {
+                title: gridjs.html(`<a class='link-dark' href="{% url 'invoices:invoice_detail' invoice.id %}">{{invoice.title}}</a>`),
+                customer: gridjs.html(`<a class='link-dark' href="{% url 'invoices:customer_detail' invoice.customer.id %}">{{invoice.customer.name}}</a>`),
+                concept: `{{ invoice.concept }}`,
+                issue_date: '{{ invoice.issue_date }}',
+                irpf: '{{ invoice.irpf }} %',
+              },
+            {% endfor %}
+          ],
+          search: {
+            selector: (cell, rowIndex, cellIndex) => [0, 1, 4].includes(cellIndex) ? cell : null,
+          },
+          sort: true,
+          resizable: true,
+          pagination: true,
+          style: {
+            
+        th: {
+          'background-color': '#0d6efd',
+          color: '#fff',
+          'border-bottom': '3px solid #ccc',
+          'text-align': 'center'
+        },
+        td: {
+          'text-align': 'center'
+        }
+      }
+        }).render(document.getElementById('table'));
+      </script>
+      </div>
+    
+    </section>
+    
+{% endblock %}

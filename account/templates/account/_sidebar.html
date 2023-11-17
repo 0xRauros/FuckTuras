@@ -1,0 +1,61 @@
+{% load static %}
+
+  <div class="sidebar animate__animated animate__fadeInLeft" style="height: 100%;">
+      <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px; height: 100%;">
+          <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none ">
+              <img src="{% if request.user.profile.photo %}{{request.user.profile.photo.url}}{% else %}{% static 'images/no_image_profile.png' %}{% endif %}" 
+              class="rounded-circle shadow-4 sidebar-picture border border-primary"
+              style="width: 100px; height: 100px;" alt="Avatar" />
+            <span class="fs-4 p-4">User {{ request.user.username }}</span>
+          </a>
+          <hr>
+          <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+              <a href="{% url 'account:dashboard' %}" class="nav-link {% if request.path == '/account/dashboard/' %} active{% endif %} text-white" aria-current="page">
+                <i class="bi bi-speedometer2"></i>&nbsp;&nbsp;
+                <strong>Dashboard</strong>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'invoices:invoice_list' %}" class="nav-link {% if request.path == '/' %} active{% endif %} text-white" aria-current="page">
+                  <i class="bi bi-receipt"></i>&nbsp;&nbsp;
+                <strong>Invoices</strong>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'invoices:invoice_form' %}" class="nav-link {% if request.path == '/invoice/create/' %} active{% endif %} text-white">
+                  <i class="bi bi-file-earmark-plus"></i>&nbsp;&nbsp;
+                <strong>Add invoice</strong>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'invoices:list_customers' %}" class="nav-link {% if request.path == '/customer/list/' %} active{% endif %} text-white">
+                  <i class="bi bi-people"></i>&nbsp;&nbsp;
+                <strong>Customers</strong>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'invoices:add_customer' %}" class="nav-link {% if request.path == '/customer/add/' %} active{% endif %} text-white">
+                  <i class="bi bi-person-add"></i>&nbsp;&nbsp;
+                <strong>Add customer</strong>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'account:profile_detail' request.user.profile.id %}" class="nav-link {% if 'account/profile' in request.path %} active{% endif %} text-white">
+                  <i class="bi bi-person-circle"></i>&nbsp;&nbsp;
+                <strong>Account</strong>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'account:settings_detail' request.user.profile.id %}" class="nav-link text-white">
+                  <i class="bi bi-gear"></i>&nbsp;&nbsp;
+                <strong>Settings</strong>
+              </a>
+            </li>
+          </ul>
+          <hr>
+        </div>
+      
+        <div class="b-example-divider b-example-vr"></div>
+  </div>
+

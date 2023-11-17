@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Account {{object.user.username}}{% endblock %}
+
+{% block styles %}
+<link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+<section class="layout">
+    {% include 'account/_sidebar.html' %}
+    <div class="body animate__animated animate__slideInUp animate__delay-0.5s">
+        <div class="container text-white">
+            <div class="px-4 py-5 my-5 text-center">
+            <img src="{% if request.user.profile.photo %}{{request.user.profile.photo.url}}{% else %}{% static 'images/no_image_profile.png' %}{% endif %}" 
+              class="rounded-circle shadow-4 border border-primary text-center"
+              style="width: 100px; height: 100px;" alt="Avatar" />
+                <h1 class="display-5 fw-bold">{{ object.user.username }}</h1>
+                <div class="col-lg-6 mx-auto">
+                  <p class="lead mb-4">{{ object.description }}</p>
+                  <hr>
+                  <div class="row">
+                    <div class="col">
+                        <p><strong><i class="bi bi-geo-alt"></i>&nbsp;&nbsp;City: </strong>{{ object.city }}</p>
+                    </div>
+                    <div class="col">
+                        <p><strong><i class="bi bi-signpost-fill"></i>&nbsp;&nbsp;Address: </strong>{{ object.address }}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  
+                  <div class="row">
+                    <div class="col">
+                        <p><strong><i class="bi bi-telephone-fill"></i>&nbsp;&nbsp;Tlf: </strong>{{ object.phone }}</p>
+                    </div>
+                    <div class="col">
+                        <p><strong><i class="bi bi-link"></i></i>&nbsp;&nbsp;Web Site: 
+                        </strong><a href="{{ object.website }}" target="_blank">{{ object.website }}</a></p>
+                    </div>
+                    <div class="col">
+                        <p><strong><i class="bi bi-envelope"></i></i>&nbsp;&nbsp;Email: </strong>{{ object.email }}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <a href="{% url 'account:profile_update' request.user.profile.id %}" class="btn btn-primary btn-lg px-4 gap-3">Edit</a>
+                    <a href="#" class="btn btn-danger btn-lg px-4">Delete</a>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </div>
+    
+    </section>
+    
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

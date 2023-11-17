@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Add Invoice{% endblock %}
+
+{% block content %}
+<section class="layout">
+    {% include 'account/_sidebar.html' %}
+    <div class="body animate__animated animate__slideInUp animate__delay-0.5s">
+      <div class="container">
+        <div class="jumbotron text-white">
+          <h1 class="text-white"><i class="bi bi-person-add"></i>&nbsp;&nbsp; <strong>Add Invoice</strong></h1>
+            <p class="lead">Fill the form below with information of the new invoice.</p>
+            <hr class="my-4">
+            <div style="max-width: 50%;">
+
+              
+
+            </div>
+          </div>
+          <br>
+    </div>
+        <style>
+          .thumbnail { 
+            top:-50px; 
+            left:-35px; 
+            display:block; 
+            border-radius: 8px;
+            z-index:999; 
+            cursor: pointer; 
+            -webkit-transition-property: all; 
+            -webkit-transition-duration: 0.3s; 
+            -webkit-transition-timing-function: ease; 
+            } 
+
+            /*change the number below to scale to the appropriate size*/ 
+            .thumbnail:hover { 
+            transform: scale(3); 
+            border-style: solid;
+            border-color: #0d6efd;
+            border-width: 1px;
+            border-radius: 8px;
+            }
+          </style>
+          
+        <h2 class="text-white">Select the invoice style</h2>
+        <hr>
+        <div class="row">
+          <div class="col">
+            <img src="{% static 'images/invoices/style_01.png' %}" 
+                  onclick="(() => document.getElementById('invoiceStyle').setAttribute('value', 'style_01'))()" 
+                  class="thumbnail" height="180" width="200" /> 
+          </div>
+          <div class="col">
+            <img src="{% static 'images/invoices/style_02.png' %}" 
+            onclick="(() => document.getElementById('invoiceStyle').setAttribute('value', 'style_02'))()"
+            class="thumbnail" height="180" width="200"/> 
+          </div>
+          <div class="col">
+            <img src="{% static 'images/invoices/style_01.png' %}" 
+            onclick="(() => document.getElementById('invoiceStyle').setAttribute('value', 'style_03'))()"
+            class="thumbnail" height="180" width="200" /> 
+          </div>
+          <div class="col">
+            <img src="{% static 'images/invoices/style_01.png' %}" 
+            onclick="(() => document.getElementById('invoiceStyle').setAttribute('value', 'style_04'))()"
+            class="thumbnail" height="180" width="200" /> 
+          </div>
+          <div class="col">
+            <img src="{% static 'images/invoices/style_01.png' %}" 
+            onclick="(() => document.getElementById('invoiceStyle').setAttribute('value', 'style_05'))()"
+            class="thumbnail" height="180" width="200" /> 
+          </div>
+        </div>
+
+      </div>
+    
+    </section>
+
+    <script>
+      function setStyle(obj) {
+        console.log(obj)
+        let element = document.getElementById('invoiceStyle');
+        element.setAttribute('value', 'pito');
+      }
+    </script>
+    
+{% endblock %}
