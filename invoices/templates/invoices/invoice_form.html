@@ -13,37 +13,66 @@
           <h1 class="text-white"><i class="bi bi-person-add"></i>&nbsp;&nbsp; <strong>Add Invoice</strong></h1>
             <p class="lead">Fill the form below with information of the new invoice.</p>
             <hr class="my-4">
-            <div style="max-width: 50%;">
+            <div style="max-width: 70%;">
 
-              <form method="post">
+              <form action="post">
                 {% csrf_token %}
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Create Invoice</h4>
-                    </div>
-                    <div class="card-body">
-                        {{ form.non_form_errors }}
-                        {{ form.as_p }}
-                        <h5 class="text-info">Add Invoice Items</h5>
-                        {{ invoice_item_formset.non_form_errors }}
-                        {{ invoice_item_formset.management_form }}
-                        {% for form in invoice_item_formset %}
-                            
-                            <div class="d-flex py-1 inline {{ invoice_item_formset.prefix }}">
-                                <div>{{ form.name.label }}: {{ form.name }}</div>
-                                <div>{{ form.price.label }}: {{ form.price }}</div>
-                                <div>{{ form.quantity.label }}: {{ form.quantity }}</div>
-                                <div>{{ form.iva.label }}: {{ form.iva }}</div>
-                            </div>
-                     
-                        {% endfor %}
-                    </div>
+                {{ form.non_form_errors }}
+                <div class="row">
+                  <div class="col">
+                    {{ form.title|as_crispy_field }}
+                  </div>
+                  <div class="col">
+                    {{ form.customer|as_crispy_field}}
+                  </div>
                 </div>
-                <div class="mt-3 mb-5">
-                    <button type="submit" class="px-5 btn btn-info">Submit</button>
+                <div class="row">
+                  <div class="col">
+                    {{ form.issuer_legal_number|as_crispy_field }}
+                  </div>
+                  <div class="col">
+                    {{ form.slug|as_crispy_field }}
+                  </div>
                 </div>
-              </form>
+                <div class="row">
+                  <div class="col">
+                    {{ form.concept|as_crispy_field}}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    {{ form.issue_date|as_crispy_field}}
+                  </div>
+                  <div class="col">
+                    {{ form.irpf|as_crispy_field }}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    {{ form.iban|as_crispy_field }}
+                  </div>
+                </div>
+                <hr>
+                <h4 class="text-primary">Add Invoice Item</h4>
 
+                {{ invoice_item_formset.non_form_errors }}
+                {{ invoice_item_formset.management_form }}
+                {% for form in invoice_item_formset %}
+                  <hr>
+                  <div class="row py-2">
+                    <div class="col">{{ form.name.label }}: {{ form.name }}</div>
+                    <div class="col">{{ form.price.label }}: {{ form.price }}</div>
+                  </div>
+                  <div class="row py-2">
+                    <div class="col">{{ form.quantity.label }}: {{ form.quantity }}</div>
+                    <div class="col">{{ form.iva.label }}: {{ form.iva }}</div>
+                  </div>
+                  
+                {% endfor %}
+
+                <br>
+                <input type="submit" next="{{next}}" class="btn btn-primary" value="Add customer">
+              </form>
             </div>
           </div>
           <br>
