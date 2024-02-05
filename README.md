@@ -5,7 +5,11 @@ What Makes <strong>FuckTuras</strong> Extra Special?
 
 Absolutely nothing! Still want to give it a try?
 
-<img src="image.png"/>
+<img src="image_1.png"/>
+
+<img src="image_2.png"/>
+
+<img src="image_3.png"/>
 
 ## Status
 Building...
